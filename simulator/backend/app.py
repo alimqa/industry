@@ -1,28 +1,39 @@
 from flask import Flask, request, jsonify
+import csv
 from datetime import datetime
 
 app = Flask(__name__)
 
-sensor_data = []
+CSV_FILE = "sensor_data.csv"
 
 @app.route("/data", methods=["POST"])
 def receive_data():
     data = request.json
 
-    record = {
-        "device_id": data.get("device_id"),
-        "temperature": data.get("temperature"),
-        "humidity": data.get("humidity"),
-        "timestamp": datetime.utcnow().isoformat()
-    }
+    with open(CSV_FILE, mode="a", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow([
+            data["timestamp"],
+            data["temperature"],
+            data["humidity"]
+        ])
 
-    sensor_data.append(record)
+    return jsonify({"status": "success"}), 200
 
-    return jsonify({"status": "success", "data": record}), 200
 
 @app.route("/data", methods=["GET"])
 def get_data():
-    return jsonify(sensor_data), 200
+    records = []
+    try:
+        with open(CSV_FILE, mode="r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                records.append(row)
+    except FileNotFoundError:
+        pass
+
+    return jsonify(records)
+    
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
