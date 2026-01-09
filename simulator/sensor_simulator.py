@@ -3,7 +3,7 @@ import random
 import time
 from datetime import datetime
 
-BACKEND_URL = "http://localhost:5000/data"
+BACKEND_URL = "https://industry-j511.onrender.com/data"
 
 while True:
     data = {
