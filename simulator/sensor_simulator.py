@@ -2,7 +2,7 @@ import requests
 import random
 import time
 
-URL = "http://localhost:5000/data"
+URL = "https://industry-j511.onrender.com"
 
 while True:
     payload = {
