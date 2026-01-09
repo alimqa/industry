@@ -1,18 +1,26 @@
-# IoT Sensor Data Collection & Visualization
+# IoT Sensor Data Collection & Visualization 
 
-This project demonstrates an end-to-end IoT data pipeline:
-- Sensor data simulation
-- Data ingestion via HTTP / MQTT
-- Cloud database storage
-- Data visualization using Power BI
+## Project Description
+This project demonstrates an IoT system using a virtual sensor.
+Sensor data (temperature and humidity) is generated programmatically,
+sent to a backend server, stored, and visualized.
 
-## Technologies
+## Technologies Used
 - Python
-- HTTP / MQTT
-- Cloud Database (PostgreSQL)
-- Power BI (Web)
+- Flask (Backend API)
+- HTTP Protocol
+- Virtual IoT Sensor
+- CSV / Database
+- Visualization (Grafana / Python)
 
-## Output
-- Interactive dashboards
-- GitHub repository
-- Technical report (2 pages)
+## Architecture
+Virtual Sensor → HTTP → Backend → Database → Dashboard
+
+## How to Run
+1. Install requirements
+2. Run backend/app.py
+3. Run sensor_simulator.py
+4. Visualize collected data
+
+## Author
+BABAKPAYEVA ALIMA ST-2303
